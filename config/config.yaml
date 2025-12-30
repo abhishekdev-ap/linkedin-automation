@@ -1,0 +1,131 @@
+# Browser Configuration
+browser:
+  headless: false
+  slow_motion: 0          # Slow motion delay in ms (for debugging)
+  devtools: false         # Open devtools
+  user_data_dir: ""       # Custom user data directory
+  
+  # Viewport settings for fingerprint masking
+  viewport:
+    width: 1920
+    height: 1080
+  
+  # User agent rotation
+  user_agents:
+    - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    - "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    - "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+
+# Stealth Configuration
+stealth:
+  # Mouse movement
+  mouse:
+    min_speed: 0.5        # Minimum speed multiplier
+    max_speed: 1.5        # Maximum speed multiplier
+    overshoot: true       # Enable overshoot and correction
+    micro_moves: true     # Add micro-movements
+    bezier_points: 4      # Number of control points for Bézier curves
+  
+  # Timing patterns (all values in milliseconds)
+  timing:
+    min_delay: 500        # Minimum delay between actions
+    max_delay: 3000       # Maximum delay between actions
+    think_time:
+      min: 1000
+      max: 5000
+    page_load_wait:
+      min: 2000
+      max: 5000
+  
+  # Scrolling behavior
+  scroll:
+    min_speed: 100        # Pixels per scroll event
+    max_speed: 500
+    pause_probability: 0.3  # Probability of pausing during scroll
+    reverse_probability: 0.1  # Probability of scrolling back slightly
+  
+  # Typing simulation
+  typing:
+    min_interval: 50      # Minimum ms between keystrokes
+    max_interval: 200     # Maximum ms between keystrokes
+    typo_probability: 0.02  # Probability of making a typo
+    correction_delay: 500   # Delay before correcting typo
+
+# Rate Limiting
+limits:
+  connections:
+    daily: 50             # Maximum connections per day
+    hourly: 10            # Maximum connections per hour
+    cooldown: 60          # Seconds between connection requests
+  
+  messages:
+    daily: 100            # Maximum messages per day
+    hourly: 20            # Maximum messages per hour
+    cooldown: 30          # Seconds between messages
+  
+  searches:
+    daily: 100            # Maximum searches per day
+    pages_per_search: 10  # Maximum pages to paginate
+
+# Activity Scheduling
+scheduling:
+  enabled: true
+  timezone: "America/New_York"
+  
+  # Operating hours
+  work_hours:
+    start: 9              # 9 AM
+    end: 18               # 6 PM
+  
+  # Break patterns
+  breaks:
+    enabled: true
+    min_duration: 10      # Minutes
+    max_duration: 30      # Minutes
+    probability: 0.2      # Probability of taking a break
+
+# Storage Configuration
+storage:
+  type: sqlite
+  path: linkedin_automation.db
+  
+  # Backup settings
+  backup:
+    enabled: true
+    interval: 3600        # Seconds (1 hour)
+    max_backups: 5
+
+# Logging Configuration
+logging:
+  level: info             # debug, info, warn, error
+  format: json            # json or console
+  output: stdout          # stdout, stderr, or file path
+  
+  # File logging
+  file:
+    enabled: false
+    path: logs/linkedin-bot.log
+    max_size: 100         # MB
+    max_backups: 3
+    max_age: 28           # Days
+
+# Message Templates
+templates:
+  connection_note: |
+    Hi {{.FirstName}},
+    
+    I came across your profile and was impressed by your work at {{.Company}}. 
+    I'd love to connect and learn more about your experience in {{.Industry}}.
+    
+    Best regards!
+  
+  followup_message: |
+    Hi {{.FirstName}},
+    
+    Thank you for connecting! I noticed you're working in {{.Industry}} and 
+    thought it would be great to exchange ideas sometime.
+    
+    Would you be open to a brief chat?
+    
+    Best,
+    {{.SenderName}}

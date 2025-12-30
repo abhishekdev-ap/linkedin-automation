@@ -1,0 +1,53 @@
+# Binaries
+linkedin-bot
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary
+*.test
+
+# Output of go coverage tool
+*.out
+
+# Go workspace file
+go.work
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment variables (NEVER commit credentials!)
+.env
+
+# Session files (contains cookies)
+.session.json
+cookies.json
+*.cookies
+
+# Database
+*.db
+linkedin.db
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+
+# Build output
+bin/
+dist/
+
+# Vendor (optional - uncomment if you vendor dependencies)
+# vendor/
